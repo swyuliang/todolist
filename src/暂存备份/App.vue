@@ -3,11 +3,9 @@
   <h1>ToDoList</h1>
   <div class="todo-container">
     <div class="todo-wrap">
-      <!-- <MyHeader :addTodo="addTodo"/>       改自定义事件如下-->
-      <MyHeader @addTodo="addTodo"/>
+      <MyHeader :addTodo="addTodo"/>
       <MyList :todos="todos" :CheckTodo="CheckTodo" :deleteTodo="deleteTodo"/>
-      <!-- <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"/>    -->
-      <MyFooter :todos="todos" @checkAllTodo="checkAllTodo" @clearAllTodo="clearAllTodo"/>
+      <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"/>
     </div>
   </div>
 </div>
