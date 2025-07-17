@@ -34,14 +34,10 @@ export default {
   mounted(){
     this.$bus.$on('CheckTodo',this.CheckTodo)
     // this.$bus.$on('deleteTodo',this.deleteTodo)
-    this.pid = pubsub.subscribe('deleteTodo',this.deleteTodo) // 删除功能改用订阅消息
-    this.$bus.$on('EditTodo',this.EditTodo)
-    this.$bus.$on('UpdateTodo',this.UpdateTodo)
+   this.pid = pubsub.subscribe('deleteTodo',this.deleteTodo) // 删除功能改用订阅消息
   },
   beforeDestroy(){
     this.$bus.$off('CheckTodo')
-    this.$bus.$off('EditTodo')
-    this.$bus.$off('UpdateTodo')
     // this.$bus.$off('deleteTodo')
     pubsub.unsubscribe(this.pid)
 
@@ -58,23 +54,6 @@ export default {
     deleteTodo(_, id){
       this.todos = this.todos.filter((todo)=>{
         return todo.id !== id
-      })
-    },
-    EditTodo(todo) {
-      this.todos.forEach((td)=>{
-        if(td.id === todo.id) td.isEdit = true
-      })
-    },
-      UpdateTodo(todo, val) {
-      this.todos.forEach((td)=>{
-        if(td.id === todo.id){
-          td.isEdit = false
-          if(!val){
-            return alert('输入不能为空')
-          } else {
-            td.title = val
-          }
-        }
       })
     },
     checkAllTodo(done){
@@ -130,16 +109,6 @@ body {
 .btn-danger:hover {
   color: #fff;
   background-color: #bd362f;
-}
-.btn-edit {
-  color: #fff;
-  background-color: skyblue;
-  border: 1px solid rgb(83, 164, 196);
-}
-
-.btn-edit:hover {
-  color: #fff;
-  background-color: rgb(30, 141, 185);
 }
 
 .btn:focus {
